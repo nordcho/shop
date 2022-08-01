@@ -1,137 +1,140 @@
-/* Тут нормально делаю CSS */
+/* Свичер темной темы */
 
-.main_productcard_container {
+#NightModeSwitcher {
+  position: relative;
+  width: 40px;
+  height: 20px;
+  -webkit-appearance: none;
+  background-color: grey;
+  border-radius: 20px;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  /* transition: 0.5s; */
+}
+
+#NightModeSwitcher:checked {
+  background-color: deepskyblue;
+  transition: 0.5s;
+}
+
+#NightModeSwitcher::before {
+  position: absolute;
+  content: "";
+  width: 20px;
+  height: 20px;
+  border-radius: 20px;
+  top: 0;
+  left: 0;
+  background: #ffffff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  animation-name: MoveNightModeSwitcherRight;
+  animation-duration: 300ms;
+}
+
+#NightModeSwitcher:checked::before {
+  left: 20px;
+  animation-name: MoveNightModeSwitcherLeft;
+  animation-duration: 300ms;
+}
+
+@keyframes MoveNightModeSwitcherLeft {
+  0% {
+    left: 0;
+  }
+
+  50% {
+    width: 25px;
+  }
+  
+  100% {
+    left: 20px;
+  }
+
+}
+
+@keyframes MoveNightModeSwitcherRight {
+  0% {
+    left: 20px;
+  }
+
+  50% {
+    width: 25px;
+  }
+  
+  100% {
+    left: 0;
+  }
+
+}
+
+
+/* Контейнер */
+
+.productContainer {
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
-  padding: 0 25px;
-  max-width: 1377px;
+  max-width: 1456px;
+  width: calc(100% - 80px);
   margin: auto;
 }
 
-.change_button {
+
+
+.productTypeButton {
   display: flex;
-  margin-bottom: 10px;
   justify-content: flex-end;
-  width: 100%;
 }
 
-.product_container {
+/*Карточки продукта, вид - карточка */
+
+.productList {
   background-color: #ffffff;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
   gap: 5px;
-}
-
-.product_container_reverse {
-  background-color: #ffffff;
-  width: auto;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  gap: 5px;
-  align-items: center;
-}
-
-.product {
-  background-color: #ffffff;
-  padding: 15px;
-  border: 1px solid transparent;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  flex: 1, 1, 1;
-}
-
-.product_reverse {
-  background-color: #ffffff;
-  padding: 15px;
-  border: 1px solid transparent;
-  border-radius: 10px;
   display: grid;
-  grid-template-columns: repeat(3, auto);
-  grid-template-rows: repeat(2, auto);
-  width: 50%;
+  grid-template-columns: repeat(4, auto);
+  max-width: 1456px;
+  margin: auto;
+}
+
+.productCard {
+  background-color: #ffffff;
+  padding: 15px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
-.product > * {
-  margin: 5px;
+.productCard > * {
+  margin-bottom: 5px;
 }
 
-.product_reverse > * {
-  margin: 5px;
-}
-
-.product:hover {
-  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
-}
-
-.product_reverse:hover {
-  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
-}
-
-.image {
-  height: 200px;
-  width: 250px;
+.productImage {
   overflow: hidden;
 }
 
-.image_reverse {
-  overflow: hidden;
-  order: 1;
-  grid-row: span 2;
-}
-
-.price {
-  font-family: YS Text,Arial,Helvetica,sans-serif;;
+.productPrice {
+  font-family: YS Text,Arial,Helvetica,sans-serif;
   font-weight: bold;
-  font-size: 20px;
 }
 
-.price_reverse {
-  font-family: YS Text,Arial,Helvetica,sans-serif;;
-  font-weight: bold;
-  font-size: 20px;
-  align-self: end;
-  order: 3;
-}
-
-.price:hover {
+.productPrice span:hover {
   color: #007197f8;
 }
 
-.price_reverse:hover {
-  color: #007197f8;
-}
-
-.name_of_product {
+.productName {
   max-width: fit-content;
   font-family: YS Text,Arial,Helvetica,sans-serif;
   font-weight: bold;
-  font-size: 18px;
 }
 
-.name_of_product_reverse {
-  max-width: fit-content;
+.productDescription span {
   font-family: YS Text,Arial,Helvetica,sans-serif;
-  font-weight: bold;
-  font-size: 18px;
-  order: 2;
+  display: block;
 }
 
-.product_description {
-  font-family: YS Text,Arial,Helvetica,sans-serif;
-}
-
-.product_description_reverse {
-  font-family: YS Text,Arial,Helvetica,sans-serif;
-  font-size: 16px;
-  order: 4;
-}
-
-.purchase_button {
+.productPurchaseButton {
   cursor: pointer;
   align-self: center;
   border-radius: 8px;
@@ -143,11 +146,105 @@
   border-color: #ffffffc0;
 }
 
-.purchase_button_reverse {
+.productPurchaseButton:hover {
+  background-color: #00bfff67
+}
+
+.productCounter {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  font-weight: bold;
+  font-size: 20px;
+  border: 3px deepskyblue solid;
+  border-radius: 8px;
+  font: YS Text,Arial,Helvetica,sans-serif;
+  height: 34px;
+}
+
+.productCounter button {
+  padding: 0 15px 0 15px;
+  cursor: pointer;
+  border: 0px;
+  background-color: #ffffff;
+}
+
+.productCounter span {
+  font-size: 20px;
+}
+
+.productCounter input {
+  text-align: center;
+  border: 0px;
+  width: 50%;
+}
+
+.text-field__input:focus {
+  
+}
+
+/* Карточки продукта, вид - список */
+
+.productListRow {
+  background-color: #ffffff;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 5px;
+  align-items: center;
+}
+
+.productListRow .productCard {
+  background-color: #ffffff;
+  padding: 15px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: repeat(3, 300px);
+  grid-template-rows: repeat(2, 125px);
+  width: 800px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.productListRow .productCard .productImage {
+  overflow: hidden;
+  order: 1;
+  grid-row: span 2;
+  width: auto;
+}
+
+.productListRow .productCard .productPrice {
+  font-family: YS Text,Arial,Helvetica,sans-serif;
+    font-weight: bold;
+    align-self: end;
+    order: 3;
+    justify-items: center;
+}
+
+.productListRow .productCard .productPrice span:hover {
+  color: #007197f8;
+}
+
+.productListRow .productCard .productName {
+  max-width: fit-content;
+  font-family: YS Text,Arial,Helvetica,sans-serif;
+  font-weight: bold;
+  order: 2;
+  align-self: flex-start;
+}
+
+.productListRow .productCard .productDescription {
+  font-family: YS Text,Arial,Helvetica,sans-serif;
+  order: 4;
+  display: block;
+}
+
+.productListRow .productCard .productPurchaseButton {
   cursor: pointer;
   align-self: flex-start;
   border-radius: 8px;
-  width: 80%;
+  width: 60%;
   height: 40px;
   font-weight: bold;
   background-color: deepskyblue;
@@ -156,10 +253,151 @@
   order: 6;
 }
 
-.purchase_button:hover {
+.productListRow .productPurchaseButton:hover {
   background-color: #00bfff67
 }
 
-.purchase_button_reverse:hover {
-  background-color: #00bfff67
+.productListRow .productCounter {
+  display: flex;
+  width: 60%;
+  font-weight: bold;
+  font-size: 20px;
+  border: 3px deepskyblue solid;
+  border-radius: 8px;
+  height: 34px;
+  order: 6;
+}
+
+.productListRow .productCard .productCounter button {
+  cursor: pointer;
+  background-color: #ffffff;
+}
+
+.productListRow .productCounter input {
+  text-align: center;
+  border: 0px;
+} 
+
+/* Блок media запросов */
+
+@media (max-width:1456px) { 
+  .productList {
+      grid-template-columns: repeat(3, auto);
+      margin: auto;
+  }
+}
+
+@media (max-width:1003px) { 
+  .productList {
+      grid-template-columns: repeat(3, auto);
+      margin: auto;
+  }
+}
+
+
+/* Ночная тема */
+
+.NightModeSwitcherContainer {
+  display: flex;
+  justify-content: end;
+}
+
+.nightTheme  {
+  background-color: #121212;
+}
+
+.nightTheme .productContainer  {
+  background-color: #121212;
+}
+
+/* Ночная тема для карточек */
+
+.nightTheme .productContainer .productList  {
+  background-color: #121212;
+}
+
+.nightTheme .productContainer .productList .productCard  {
+  background-color: #1f1b24;
+}
+
+.nightTheme .productContainer .productList .productCard .productPrice span  {
+  background-color: #1f1b24;
+  color: white;
+}
+
+.nightTheme .productContainer .productList .productCard .productName span  {
+  background-color: #1f1b24;
+  color: white;
+}
+
+.nightTheme .productContainer .productList .productCard .productDescription span  {
+  background-color: #1f1b24;
+  color: white;
+}
+
+.nightTheme .productContainer .productList .productCard .productPurchaseButton  {
+  border-color: #1f1b24;
+}
+
+.nightTheme .productContainer .productList .productCard .productCounter button {
+  background-color: #1f1b24;
+  color: white;
+}
+
+.nightTheme .productContainer .productList .productCard .productCounter input {
+  background-color: #1f1b24;
+  color: white;
+}
+
+/* Ночная тема для списка карточек */
+
+.nightTheme .productContainer .productListRow  {
+  background-color: #1f1b24;
+}
+
+.nightTheme .productContainer .productListRow .productCard .productPrice span  {
+  background-color: #1f1b24;
+  color: white;
+}
+
+.nightTheme .productContainer .productListRow .productCard  {
+  background-color: #1f1b24;
+}
+
+.nightTheme .productContainer .productListRow .productCard .productPrice span  {
+  background-color: #1f1b24;
+  color: white;
+}
+
+.nightTheme .productContainer .productListRow .productCard .productName span  {
+  background-color: #1f1b24;
+  color: white;
+}
+
+.nightTheme .productContainer .productListRow .productCard .productDescription span  {
+  background-color: #1f1b24;
+  color: white;
+}
+
+.nightTheme .productContainer .productListRow .productCard .productPurchaseButton  {
+  border-color: #1f1b24;
+}
+
+.nightTheme .productContainer .productListRow .productCard .productPrice span  {
+  background-color: #1f1b24;
+  color: white;
+}
+
+.nightTheme .productContainer .productListRow .productCard .productCounter button {
+  background-color: #1f1b24;
+  color: white;
+}
+
+.nightTheme .productContainer .productListRow .productCard .productCounter input {
+  background-color: #1f1b24;
+  color: white;
+}
+
+.nightTheme .NightModeSwitcherLabel {
+  color: white;
 }

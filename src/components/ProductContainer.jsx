@@ -1,20 +1,21 @@
-import React from 'react';
-import Product from './Product';
+import React, {useState} from 'react';
 
-const ProductContainer = () => {
+const ProductContainer = (props) => {
+
+    const [viewType, setViewType] = useState(() => {
+        return 'productList'
+    })
+
     return (
-        <div className='product_container'>
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-            <Product />
+    <div className='productContainer'>
+        <div className='productTypeButton'>
+            <button onClick={() => {setViewType('productList')}}>Карточки</button>
+            <button onClick={() => {setViewType('productListRow')}}>Список</button>
         </div>
+        <div className={viewType}>
+            {props.children}
+        </div>
+    </div>
     );
 };
 
